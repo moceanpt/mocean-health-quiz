@@ -8,6 +8,7 @@ const HealthQuiz = () => {
   const [answers, setAnswers] = useState(Array(totalQuestions).fill(null));
   const [currentSection, setCurrentSection] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
 
   const handleAnswer = (index, value) => {
     const updated = [...answers];
@@ -164,7 +165,41 @@ const HealthQuiz = () => {
     <div style={{ maxWidth: 800, margin: '0 auto', padding: '2rem' }}>
       <h1>MOCEAN Health Quiz</h1>
 
-      {!submitted ? (
+      {showIntro ? (
+  <>
+    <h2>Is MOCEAN Right for You?</h2>
+    <p>
+      At MOCEAN, we take a whole-person approach to healing — integrating physical, emotional, and energetic systems to help you feel your best.
+    </p>
+    <p>
+      This short quiz is designed to help you understand whether MOCEAN might be a good fit for your health goals and concerns.
+      You'll answer a few questions about how you’ve been feeling lately — and we’ll share personalized insights and recommendations at the end.
+    </p>
+    <p style={{ fontStyle: 'italic', color: '#666' }}>
+      <strong>Disclaimer:</strong> This quiz is not a medical diagnosis. It is a self-assessment tool meant to offer guidance and clarity.
+      For a comprehensive evaluation and personalized plan of care, we recommend visiting MOCEAN for a full Initial Evaluation with our team.
+    </p>
+    <p style={{ marginTop: '1.5rem', fontWeight: 'bold' }}>
+      The quiz takes less than 3 minutes. Let’s begin your journey to better balance and lasting wellness.
+    </p>
+
+    <button
+      onClick={() => setShowIntro(false)}
+      style={{
+        marginTop: '1rem',
+        padding: '12px 24px',
+        fontSize: '1rem',
+        backgroundColor: '#000',
+        color: '#fff',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer'
+      }}
+    >
+      Start the Quiz
+    </button>
+  </>
+) : !submitted ? (
         <>
           <p>Section {currentSection + 1} of {quizData.length}</p>
           <h3>{quizData[currentSection].category}</h3>
